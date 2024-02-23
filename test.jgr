@@ -1,0 +1,13 @@
+newgraph
+
+xaxis min -3 max 13 nodraw grid_lines
+yaxis min -5 max 13 nodraw grid_lines
+
+(* Interior Wall *)
+newline linethickness 2 color .3 .3 .3
+		pts 0 2  4 2  4 7  0 7  0 2
+(* Exterior Wall *)
+newline linethickness 2 color 0 0 0
+        pts 0 0  10 0  10 5  8 5  8 7  0 7  0 0
+newcurve eps ./door.ps marksize 14 15 pts 8 5.5  4 2.5
+newcurve eps ./door.ps marksize 14 15 mrotate 65 pts 0 0
