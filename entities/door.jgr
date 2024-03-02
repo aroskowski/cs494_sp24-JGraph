@@ -13,5 +13,5 @@ newcurve linetype dotted marktype none pfill 1 linethickness 2 color .8 0 0  pts
 		} printf("\n") }'
 (* draw the connecting wedge *)
 newline linethickness 2 linetype solid color .8 0 0  
-	pts 7.8 8.25  6.5 7.5  6.5 9 
+	pts 7.70 8.395  6.5 7.5  6.5 9 
 

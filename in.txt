@@ -1,7 +1,20 @@
-0 0
+2 2
 e15n5w3n7w12s12
 2
-0 0
+2 2
 n6e2n1e4s7w6
-6 0 
+8 2  
 n7e6s2e3s5w9
+door
+4 8
+n
+door
+2 11
+e
+door
+14 7
+e
+door
+8.5 9
+s
+quit

@@ -7,7 +7,7 @@ import re
 #                           Globals
 #=============================================================================
 jgr = open("floorplan.jgr", "w")
-jgr.write("newgraph\nxaxis nodraw\nyaxis nodraw\n\n")
+jgr.write("newgraph\nxaxis min -1 max 25 nodraw\nyaxis min -1 max 25 nodraw\n\n")
 pts = []
 roompts = []
 #=============================================================================
@@ -23,6 +23,18 @@ def print_internal(roompts):
     for i in roompts:
         jgr.write(f"{i[0]} {i[1]}\n")
     jgr.write("\n")
+def place_door(org, angle):
+    jgr.write("newcurve eps ./entities/door.ps ");
+    if(angle == 'w'):
+        jgr.write("marksize -13 15 ")
+    else:
+        jgr.write("marksize 13 15 ")
+    
+    if(angle == 'n'):
+        jgr.write("mrotate 90 ")
+    elif(angle == 's'): 
+        jgr.write("mrotate -90 ")
+    jgr.write(f"pts {org[0]} {org[1]}\n") 
 #=============================================================================
 #                       Calculation Functions
 #=============================================================================
@@ -60,7 +72,6 @@ uin = input("Enter Exterior Dimensions: ");
 test, pts = perimeter(org, uin)
 if(not test):
     print("Invalid input.\nEnter directions to walk the perimeter of the building using n (north), e (east), s (south), or w (west) followed by the number of feet to continue in this direction before another turn.\n", file=sys.stderr);
-print_external(pts);
 
 num = int(input("Enter number of rooms: "));
 for i in range(num):
@@ -71,5 +82,17 @@ for i in range(num):
     if (not test):
         print("Room error. pts did not line up", file=sys.stderr);
     print_internal(roompts);
+print_external(pts);
 
-
+print("\nPossible components to place are: door\nOr enter \"quit\" to complete the floorplan.");
+while(True):
+    comp = input("Enter component to place: ")
+    if (comp == "quit"):
+        break;
+    elif (comp == "door"):
+        org = input("Enter the orgin point of the door hinge: ");
+        org = org.split(" ");
+        angle = input("Direction of the door to open (n,e,s,w): ");
+        place_door(org, angle)
+    else:
+        print("Not a valid component.\n");
