@@ -17,4 +17,10 @@ e
 door
 8.5 9
 s
+window
+2 4 
+n3
+window
+3 2 
+e4
 quit

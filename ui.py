@@ -7,34 +7,10 @@ import re
 #                           Globals
 #=============================================================================
 jgr = open("floorplan.jgr", "w")
-jgr.write("newgraph\nxaxis min -1 max 25 nodraw\nyaxis min -1 max 25 nodraw\n\n")
+jgr.write(f"newgraph\nxaxis nodraw\nyaxis nodraw\n\n");
 pts = []
 roompts = []
-#=============================================================================
-#                       JGraph Interaction Functions
-#=============================================================================
-def print_external(points):
-    jgr.write("newline linethickness 2 color 0 0 0 pts\n")
-    for i in points:
-        jgr.write(f"{i[0]} {i[1]}\n")
-    jgr.write("\n")
-def print_internal(roompts):
-    jgr.write("newline linethickness 2 color .3 .3 .3 pts\n")
-    for i in roompts:
-        jgr.write(f"{i[0]} {i[1]}\n")
-    jgr.write("\n")
-def place_door(org, angle):
-    jgr.write("newcurve eps ./entities/door.ps ");
-    if(angle == 'w'):
-        jgr.write("marksize -13 15 ")
-    else:
-        jgr.write("marksize 13 15 ")
-    
-    if(angle == 'n'):
-        jgr.write("mrotate 90 ")
-    elif(angle == 's'): 
-        jgr.write("mrotate -90 ")
-    jgr.write(f"pts {org[0]} {org[1]}\n") 
+
 #=============================================================================
 #                       Calculation Functions
 #=============================================================================
@@ -62,6 +38,40 @@ def perimeter(org, uin):
     if(points[len(points) - 1] != points[0]):
         return (False, points);
     return (True, points);
+#=============================================================================
+#                       JGraph Interaction Functions
+#=============================================================================
+def print_external(points):
+    jgr.write("newline linethickness 2 color 0 0 0 pts\n")
+    for i in points:
+        jgr.write(f"{i[0]} {i[1]}\n")
+    jgr.write("\n")
+
+def print_internal(roompts):
+    jgr.write("newline linethickness 2 color .3 .3 .3 pts\n")
+    for i in roompts:
+        jgr.write(f"{i[0]} {i[1]}\n")
+    jgr.write("\n")
+
+def place_door(org, angle):
+    jgr.write("newcurve eps ./entities/door.ps ");
+    if(angle == 'w'):
+        jgr.write("marksize -13 15 ")
+    else:
+        jgr.write("marksize 13 15 ")
+    if(angle == 'n'):
+        jgr.write("mrotate 90 ")
+    elif(angle == 's'): 
+        jgr.write("mrotate -90 ")
+    jgr.write(f"pts {org[0]} {org[1]}\n\n") 
+
+def place_windows(org, uin):
+    points = [];
+    test, points = perimeter(org, uin);
+    jgr.write("newline linethickness 1 color .3 .3 1 pts\n");
+    for i in points:
+        jgr.write(f"{i[0]} {i[1]}\n")
+    jgr.write("\n")
 
 #=============================================================================
 #                       Main Function
@@ -84,7 +94,7 @@ for i in range(num):
     print_internal(roompts);
 print_external(pts);
 
-print("\nPossible components to place are: door\nOr enter \"quit\" to complete the floorplan.");
+print("\nPossible components to place are: window or door\nOr enter \"quit\" to complete the floorplan.");
 while(True):
     comp = input("Enter component to place: ")
     if (comp == "quit"):
@@ -93,6 +103,11 @@ while(True):
         org = input("Enter the orgin point of the door hinge: ");
         org = org.split(" ");
         angle = input("Direction of the door to open (n,e,s,w): ");
-        place_door(org, angle)
+        place_door(org, angle);
+    elif (comp == "window"):
+        org = input("Enter the orgin point of the window: ");
+        org = org.split(" ");
+        uin = input("Enter window dimensions: ");
+        place_windows(org, uin);
     else:
         print("Not a valid component.\n");
