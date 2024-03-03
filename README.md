@@ -25,9 +25,9 @@ To exit the program simply enter "quit".
 ## Example Outputs
 Examples can be seen in the examples folder. The input text, output jgraph, as well as the output pdf and jpg have all been provided. 
 
-Example 1: !(./../examples/out1.jpg)
+Example 1: ![Example1 jpg](./../examples/out1.jpg)
 
-Example 2: !(./../examples/out2.jpg)
+Example 2: ![Example2 jpg](./../examples/out2.jpg)
 
 Note that when looking at the .jgr files, the eps path has been edited to the correct one to accomodate the different directory location. This will only be required if you move the floorplan file to another directory. 
 
