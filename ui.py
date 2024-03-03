@@ -7,7 +7,7 @@ import re
 #                           Globals
 #=============================================================================
 jgr = open("floorplan.jgr", "w")
-jgr.write(f"newgraph\nxaxis nodraw\nyaxis nodraw\n\n");
+#jgr.write(f"newgraph\nxaxis nodraw\nyaxis nodraw\n\n");
 pts = []
 roompts = []
 
@@ -17,7 +17,7 @@ roompts = []
 def perimeter(org, uin): 
     #e10n4e2n6w12s10
     points = []
-    points.append((int(org[0]), int(org[1])));
+    points.append((float(org[0]), float(org[1])));
 
     #regular expression looking for (char)(ints)
     for i in re.findall(r"([a-z]+)([0-9]+)", uin): 
@@ -38,9 +38,25 @@ def perimeter(org, uin):
     if(points[len(points) - 1] != points[0]):
         return (False, points);
     return (True, points);
+def find_min_max(points):
+    x_vals = [];
+    y_vals = [];
+    for i in points:
+        x_vals.append(i[0]);
+        y_vals.append(i[1]);
+    return (max(x_vals), min(x_vals), max(y_vals), min(y_vals))
+
 #=============================================================================
 #                       JGraph Interaction Functions
 #=============================================================================
+def jgraph_setup(points):
+    xmax, xmin, ymax, ymin = find_min_max(points);
+    xmin -= 2;
+    ymin -= 2;
+    xmax += 2;
+    ymax += 2;
+    jgr.write(f"newgraph\nxaxis min {xmin} max {xmax} nodraw\nyaxis min {ymin} max {ymax} nodraw\n\n");
+
 def print_external(points):
     jgr.write("newline linethickness 2 color 0 0 0 pts\n")
     for i in points:
@@ -68,7 +84,7 @@ def place_door(org, angle):
 def place_windows(org, uin):
     points = [];
     test, points = perimeter(org, uin);
-    jgr.write("newline linethickness 1 color .3 .3 1 pts\n");
+    jgr.write("newline linethickness 2.2 color .2 .3 1 pts\n");
     for i in points:
         jgr.write(f"{i[0]} {i[1]}\n")
     jgr.write("\n")
@@ -82,6 +98,8 @@ uin = input("Enter Exterior Dimensions: ");
 test, pts = perimeter(org, uin)
 if(not test):
     print("Invalid input.\nEnter directions to walk the perimeter of the building using n (north), e (east), s (south), or w (west) followed by the number of feet to continue in this direction before another turn.\n", file=sys.stderr);
+
+jgraph_setup(pts);
 
 num = int(input("Enter number of rooms: "));
 for i in range(num):

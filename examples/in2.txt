@@ -1,0 +1,21 @@
+0 0 
+n3e3n3e3n3e6s9w12
+1
+12 9
+w6s3w3s6e9n9
+window
+0 .5
+n2
+door
+.5 3
+s
+window
+4.5 0 
+e2.75
+window
+8.75 0
+e2.75
+door
+3 .5
+e
+quit

@@ -1,0 +1,40 @@
+newgraph
+xaxis min -2.0 max 14.0 nodraw
+yaxis min -2.0 max 11.0 nodraw
+
+newline linethickness 2 color .3 .3 .3 pts
+12.0 9.0
+6.0 9.0
+6.0 6.0
+3.0 6.0
+3.0 0.0
+12.0 0.0
+12.0 9.0
+
+newline linethickness 2 color 0 0 0 pts
+0.0 0.0
+0.0 3.0
+3.0 3.0
+3.0 6.0
+6.0 6.0
+6.0 9.0
+12.0 9.0
+12.0 0.0
+0.0 0.0
+
+newline linethickness 2.2 color .2 .3 1 pts
+0.0 0.5
+0.0 2.5
+
+newcurve eps ./entities/door.ps marksize 13 15 mrotate -90 pts .5 3
+
+newline linethickness 2.2 color .2 .3 1 pts
+4.5 0.0
+6.5 0.0
+
+newline linethickness 2.2 color .2 .3 1 pts
+8.75 0.0
+10.75 0.0
+
+newcurve eps ./entities/door.ps marksize 13 15 pts 3 .5
+
