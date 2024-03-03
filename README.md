@@ -7,14 +7,14 @@ User input is taken and processed in python which outputs directly to the jgraph
 
 ## How to Run the program
 
-The user interface is found in the python file ui.py which can be run with `python ui.py`. This will automatically generate a jgraph file called "floorplan.jgr". 
+The user interface is found in the python file ui.py which can be run with `python ui.py`. This will automatically generate a jgraph file called `floorplan.jgr`. 
 
 To create a pdf output from the genereated file run `jgraph floorplan.jgr | ps2pdf - output_file.pdf`
 
 To create a jpg output run `jgraph floorplan.jgr | convert -density 300 - -quality 100 output_file.jpg`
 
 ### User Prompts
-The UI will lead the user through a series of prompts to create the floorplan. The typical format will be an origin point of the form "x y" followed by a string to specify direction. 
+The UI will lead the user through a series of prompts to create the floorplan. The typical format will be an origin point of the form `<x_coordinate> <y_coordinate>` followed by a string to specify direction. Note that spaces at the end of strings are not supported. 
 
 The first prompts create the exterior and interior walls of the building. These both follow the same format where the program will prompt for an origin point then a string to create the perimeter. This string will be a series of direction characters followed by an integer. For example, the origin `0 0` with the perimeter string `n3e3s3w3` will create a 3x3 box where the bottom left corner will be the origin. Note that if the specified room dimensions do not end at the origin point, the program will throw an error.
 
