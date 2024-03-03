@@ -5,6 +5,12 @@ e15n5w3n7w12s12
 n6e2n1e4s7w6
 8 2  
 n7e6s2e3s5w9
+label
+5 5.5
+Bedroom
+label
+12.5 5.5
+Master Bedroom
 door
 4 8
 n

@@ -29,6 +29,10 @@ newline linethickness 2 color 0 0 0 pts
 2.0 14.0
 2.0 2.0
 
+newstring hjc vjc x 5 y 5.5 fontsize 12 : Bedroom
+
+newstring hjc vjc x 12.5 y 5.5 fontsize 12 : Master Bedroom
+
 newcurve eps ./../entities/door.ps marksize 13 15 mrotate 90 pts 4 8
 
 newcurve eps ./../entities/door.ps marksize 13 15 pts 2 11
