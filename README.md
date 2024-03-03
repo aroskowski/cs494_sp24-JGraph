@@ -18,11 +18,15 @@ The UI will lead the user through a series of prompts to create the floorplan. T
 
 The first prompts create the exterior and interior walls of the building. These both follow the same format where the program will prompt for an origin point then a string to create the perimeter. This string will be a series of direction characters followed by an integer. For example, the origin `0 0` with the perimeter string `n3e3s3w3` will create a 3x3 box where the bottom left corner will be the origin. Note that if the specified room dimensions do not end at the origin point, the program will throw an error.
 
-After all the walls are placed, the user will be prompted to select a component to place. The current options are windows and doors. Windows follow the same format as the walls and can wrap corners, but there is no verification checking that windows are placed on walls so make sure you as the user have your coordinate system correct. Doors are slightly more complicated as their origin point is set at their hinges and the single direction character will define which way the door swings out. 
-
-The door direction is shown in this picture. This is using the `n` direction character. 
+#### Components
+The current options are windows, doors, and labels. 
+- Windows follow the same format as the walls and can wrap corners
+	- but there is no verification checking that windows are placed on walls so make sure you as the user have your coordinate system correct. 
+- Doors have their origin point set at their hinges, and the second prompt asks for a single direction character which define which way the door swings out. 
+	- The door direction is shown in the picture below. This is using the `n` direction character. 
 ![Door Direction](./examples/door_direction.jpg)
-
+- Labels are placed via their center point and the second prompt is for the label string.
+	- These are hardcoded to a fontsize of 12
 
 To exit the program simply enter "quit" when prompted for an additional component. 
 

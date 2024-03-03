@@ -89,6 +89,9 @@ def place_windows(org, uin):
         jgr.write(f"{i[0]} {i[1]}\n")
     jgr.write("\n")
 
+def place_label(org, uin):
+    jgr.write(f"newstring hjc vjc x {org[0]} y {org[1]} fontsize 12 : {uin}\n\n");
+
 #=============================================================================
 #                       Main Function
 #=============================================================================
@@ -112,7 +115,7 @@ for i in range(num):
     print_internal(roompts);
 print_external(pts);
 
-print("\nPossible components to place are: window or door\nOr enter \"quit\" to complete the floorplan.");
+print("\nPossible components to place are: window, door, or label\nOr enter \"quit\" to complete the floorplan.\n");
 while(True):
     comp = input("Enter component to place: ")
     if (comp == "quit"):
@@ -127,5 +130,10 @@ while(True):
         org = org.split(" ");
         uin = input("Enter window dimensions: ");
         place_windows(org, uin);
+    elif (comp == "label"):
+        org = input("Enter the center point of the label: ");
+        org = org.split(" ");
+        uin = input("Enter the label to add: ");
+        place_label(org, uin);
     else:
         print("Not a valid component.\n");
