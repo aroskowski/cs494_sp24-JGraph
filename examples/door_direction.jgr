@@ -1,0 +1,7 @@
+newgraph 
+
+xaxis min -.5 max 2 nodraw
+yaxis min -.5 max 2.5 nodraw
+
+newcurve eps ./../entities/door.ps marksize 14 15 mrotate 90 pts 1.5 0
+newline rarrow linethickness 2 pts .75 0 .75 2
