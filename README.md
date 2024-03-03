@@ -11,7 +11,7 @@ The user interface is found in the python file ui.py which can be run with `pyth
 
 To create a pdf output from the genereated file run `jgraph floorplan.jgr | ps2pdf - output_file.pdf`
 
-To create a jpg output run `jgraph floorplan.jgr | ps2pdf - | convert -density 300 - -quality 100 output_file.jpg`
+To create a jpg output run `jgraph floorplan.jgr | convert -density 300 - -quality 100 output_file.jpg`
 
 ### User Prompts
 The UI will lead the user through a series of prompts to create the floorplan. The typical format will be an origin point of the form "x y" followed by a string to specify direction. 
